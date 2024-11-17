@@ -1,0 +1,371 @@
+/* ProfilePage.css */
+
+/* General Styles */
+.ProfileContainer {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ProfileHeader {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.disbutton {
+    padding: 12px 16px;
+    font-size: 1em;
+    color: #fff;
+    background-color: orange;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    flex: 1 1;
+    font-weight: 500;
+    width: 185px;
+}
+
+.disbutton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.changeNameButton,
+.addAddressButton {
+    margin: 1rem auto;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+}
+
+/* Name Change Section */
+.nameChangeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.nameInput {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.nameInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Address Section */
+.addressSection {
+    margin: 2rem 0;
+}
+
+.addressHeader {
+    font-size: 1.75rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.addressList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.addressItemWrapper {
+    margin-bottom: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.addressItemWrapper:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.addressItem {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addressContent {
+    flex: 1;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.addressActions {
+
+    padding-left: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    gap: 1rem;
+}
+
+.editButton,
+.deleteButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.editButton {
+    background-color: #2ecc71;
+    margin-right: 10px;
+    color: #ffffff;
+    align-items: center;
+}
+
+.editButton:hover {
+    background-color: #27ae60;
+}
+
+.deleteButton {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+.deleteButton:hover {
+    background-color: #c0392b;
+}
+
+/* Address Edit Section */
+.editFormWrapper {
+    background-color: #ecf0f1;
+}
+
+/* Add New Address Form */
+.addAddressForm {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.formInput {
+    width: 90%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.submitAddressButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #347adb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-top: 16px;
+}
+
+.submitAddressButton:hover {
+    background-color: #27ae60;
+}
+
+.address-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.address-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.address-field {
+    margin-bottom: 1rem;
+}
+
+.address-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.address-field input {
+    width: 90%;
+    padding: 0.75rem;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.address-field input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.address-box disbutton {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.address-box disbutton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for FormAddress */
+@media (max-width: 600px) {
+    .address-box {
+        padding: 1rem;
+    }
+
+    .address-title {
+        font-size: 1.25rem;
+    }
+
+    .address-field input {
+        padding: 0.5rem;
+    }
+
+    .address-box disbutton {
+        width: 100%;
+    }
+}
+
+.changeNameButton
+{
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-top: 16px;
+}
+.submitNameButton
+{
+    width: 100%;
+    padding: 12px;
+    background-color: #27ae60;;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-top: 16px;
+}
+.addAddressButton
+{
+    width: 100%;
+    padding: 12px;
+    background-color: #345edb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-top: 16px;
+}
+
+.cartAndHomebut
+{
+    padding: 10px 20px;
+    background-color: white;
+    color:black;
+    border:none;
+    border-radius: 4px;
+    cursor : pointer;
+    font-size: medium;
+    font-weight: 200;
+}
+.cartAndHomebut:hover
+{
+    text-decoration: underline;
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .ProfileContainer {
+        padding: 1rem;
+    }
+
+    .ProfileHeader {
+        font-size: 2rem;
+    }
+
+    .disbutton {
+        width: 100%;
+    }
+
+    .addressActions {
+        flex-direction: column;
+    }
+
+    .editButton,
+    .deleteButton {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}

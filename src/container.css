@@ -1,0 +1,44 @@
+.Outer_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; 
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    padding-top: 0px;
+}
+.Inner_container {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    text-align: center;
+    border: 1px solid black;
+    background-size:cover;
+    background-position: center;
+    
+}
+.Inner_container:hover
+{
+    cursor:pointer;
+}
+
+.commoncss
+{
+    border: 1px solid #000000; 
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
+    width :100px;
+    height: 80px;
+    gap:1px;
+    color: #000000;
+    background-color: #ffffff;
+    background: rgba(246, 243, 243, 0.7);
+    
+}
+.commoncss:hover
+{
+    background: rgba(246, 243, 243, 1);
+}

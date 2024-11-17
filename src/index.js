@@ -3,11 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import {ProductWrap} from './context/product_provider';
+import { CartProvider } from './context/cart_context';
+import { Provider } from 'react-redux';
+import {store} from '../src/store/store'
+import {stripePromise} from '../src/stripe/strip.utils'
+
+import { Elements } from '@stripe/react-stripe-js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store = {store}>
+    <BrowserRouter>
+    {/*<UserWrap>*/}
+      <ProductWrap>
+        <CartProvider>
+            <Elements stripe={stripePromise}>
+            <App />
+            </Elements>
+        </CartProvider>
+      </ProductWrap>
+      {/*</UserWrap>*/}
+    </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
