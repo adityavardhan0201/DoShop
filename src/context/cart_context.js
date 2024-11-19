@@ -10,6 +10,11 @@ export const reducercart = (state,action) =>
 {
     if(action.type === "FETCH_CART_DETAILS")
     {
+        if(action.cart!=null)
+        {
+            //localStorage.clear();
+            localStorage.setItem("persistantState", JSON.stringify(action.cart));
+        }
         return action.cart
     }
     else
@@ -48,7 +53,26 @@ export const CartProvider =  ({ children }) => {
                 console.log(info);
             }
             }
+            else
+            {
+                const serialisedState = localStorage.getItem("persistantState");
+                let c= 0;
+                if (serialisedState) 
+                {
+                    console.log(JSON.parse(serialisedState))
+                    const info = JSON.parse(serialisedState)
+                    {
+                        info.map((mc)=>
+                        {
+                            c = c+mc.count
+                        })
+                    }
+                    setCount(c);
+                    dispatch({ type: "FETCH_CART_DETAILS", cart: info });
+                }
+            }
         }
+
         FETCHDETAILS();
     },[user])
     const [state,dispatch] = useReducer(reducercart , IntialCart)

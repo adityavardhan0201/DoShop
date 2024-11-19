@@ -51,6 +51,7 @@ const CartPage = () => {
                 const info = get.data();
                 setDoc(ref,{...details,cart:state})
         }
+        dispatch({type:"FETCH_CART_DETAILS",cart:state})
     }
     const SignInFunc = () =>
     {
@@ -74,6 +75,7 @@ const CartPage = () => {
                 const info = get.data();
                 setDoc(ref,{...details,cart:state})
         }
+        dispatch({type:"FETCH_CART_DETAILS",cart:state})
     }
     let totalsum = 0;
     return ( 

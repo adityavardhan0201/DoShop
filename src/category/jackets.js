@@ -50,7 +50,7 @@ const Jackets = () => {
             <div className="InnerCon">
                 {filteredData.map((category) =>
                     category.items.map((item) => (
-                        <div onMouseOver={() => mouseOver(item.imageUrl)}  key={item.id} className="shopping-item">
+                        <div onMouseOver={() => mouseOver(item.imageUrl)} onMouseLeave={()=>{ setAddCart()}} key={item.id} className="shopping-item">
                             <Fragment>
                                 <div className="image-container">
                                     <img

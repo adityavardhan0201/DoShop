@@ -23,9 +23,7 @@ const Navigation = () => {
     const SignOut = async () => {
         try {
             await signOut(auth);
-            dispatch({type:"dispatch",cart:[]})
             navigate('/');
-            setCount(0);
         } catch (error) {
            alert('Error signing out:', error);
         }
