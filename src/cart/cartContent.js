@@ -146,7 +146,7 @@ const CartPage = () => {
                         </Link>
                    ) : (
                     <>
-                        <button onClick={SignInFunc} className="login-btn">Click Here to SignUp</button>
+                        <button onClick={SignInFunc} className="login-btn">SignUp</button>
                         <Link to="payments" state={totalsum} className="guest-payment-btn">
                         Continue As Guest
                         </Link>

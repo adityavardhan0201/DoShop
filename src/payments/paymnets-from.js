@@ -4,7 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/cart_context';
+import { useContext } from 'react';
+import {db , auth} from '../firebase/firebase_1';
+import { setDoc , doc } from 'firebase/firestore';
 import './payments.css';
+import {StyledButton} from '../styled-components/button'
 
 const Payments = () => {
     const noUserDetails = {
@@ -28,6 +33,7 @@ const Payments = () => {
     const elements = useElements();
     const user = useSelector((state) => state.user);
     const details = useSelector((state) => state.details);
+    const {count,setCount,dispatch,state} = useContext(CartContext);
 
     const changeAddress = () => {
         SetSelect({});
@@ -58,32 +64,57 @@ const Payments = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ amount: 1000 }),
+            body: JSON.stringify({ amount: (amount*100)}),
         }).then((res) => res.json());
         const clientSecret = response.paymentIntent.client_secret;
-        let n  = "";
-        if(details && details.display)
-        {
-            n = details.display;
+        let name = "";
+        let billingDetails = {};
+        
+        if (user?.user) {
+            name = details?.display || noUserDet.name;
+            billingDetails = {
+                name: name,
+                address: {
+                    line1: select?.street || details?.address?.[0]?.street || noUserDet.street,
+                    city: select?.city || details?.address?.[0]?.city || noUserDet.city,
+                    state: select?.state || details?.address?.[0]?.state || noUserDet.state,
+                    postal_code: select?.postal || details?.address?.[0]?.postal || noUserDet.postal
+                },
+            };
         }
-        else
-        {
-            n = noUserDet.name;
+        else {
+            name = noUserDet.name;
+            billingDetails = {
+                name: name,
+                address: {
+                    line1: noUserDet.street,
+                    city: noUserDet.city,
+                    state: noUserDet.state,
+                    postal_code: noUserDet.postal,
+                },
+            };
         }
+
+
+
         const paymentResult = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement),
-                billing_details: {
-                    name: n ,
-                },
+                billing_details: billingDetails,
             },
         });
-
         if (paymentResult.error) {
             e.target.disabled = false;
             alert(paymentResult.error.message);
         } else {
             if (paymentResult.paymentIntent.status === 'succeeded') {
+                dispatch({type:"FETCH_CART_DETAILS",cart:[]})
+                if(user.user)
+                {
+                    const ref = await doc(db,"users",auth.currentUser.uid);
+                    setDoc(ref,{...details,cart:[]})
+                }
+                setCount(0);
                 setpaysuc(false)
             }
         }
@@ -135,7 +166,7 @@ const Payments = () => {
                     <h2>Name: {details.display.toUpperCase()}</h2>
                     {addressState &&  details.address && details.address.length>0 &&
                         <div className="address-selection">
-                             <h2 className="address-title">Select Address for Shipment <span style={{ color: 'red' }}>*</span></h2>
+                             <h4 className="address-title">Select Address <span style={{ color: 'red' }}>*</span></h4>
                             {details.address.map((m) => (
                                 <div key={m.street} className="address-item">
                                     <input
@@ -152,24 +183,28 @@ const Payments = () => {
                         </div>
                     }
                     
-                    {(!(details && details.address) || (details && details.address && details.address.length === 0)) && <h4 className='NoAdress' style={{ color: "red" }}>Note: Please add an address.</h4>}
-                    {(details&& details.address && details.address.length>0) && addressState && <h4 style={{color:"red"}}>Note: Please select an address.</h4>}
+                    {/*{(!(details && details.address) || (details && details.address && details.address.length === 0)) && <h4 className='NoAdress' style={{ color: "red" }}>Note: Please add an address.</h4>}
+                    {(details&& details.address && details.address.length>0) && addressState && <h4 style={{color:"red"}}>Note: Please select an address.</h4>}*/}
                     
                     {!addressState && select && (
-                        <div className="selected-address">
-                            <h2 className="address-heading">Address</h2>
+                        <div className="selected-address" style={{display:"flex" , gap:"20px" ,padding:"2px"}}>
+                            <h3 className="address-heading">Address:</h3>
                             <p className="address-details">
                                 {select.street}, {select.city}, {select.state}, {select.postal},{' '}
                                 {select.country}
                             </p>
-                            <button className="change-address-button" onClick={changeAddress}>
-                                Select Other Address
-                            </button>
+                            <div>
+                            <StyledButton className="change-address-button" onClick={changeAddress}>
+                                CHANGE ADDRESS
+                            </StyledButton>
+                            </div>
                         </div>
                     )}
-                    <button className="address-add-button" onClick={addnewADD}>
-                                Click Here to Add New Address or Edit Address
-                    </button>
+                     <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center'}}>
+                    <StyledButton className="address-add-button" onClick={addnewADD}>
+                            ADD/EDIT ADDRESS
+                    </StyledButton>
+                    </div>
                 </div>
             )}
 
@@ -226,45 +261,54 @@ const Payments = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <button className="submit-address-button" onClick={submitNoUseraddress}>
+                    <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',padding:"20px"}}>
+                    <StyledButton className="submit-address-button" onClick={submitNoUseraddress}>
                         Submit Address
-                    </button>
+                    </StyledButton>
+                    </div>
                 </div>
             )}
             {!user?.user && amount>0 && !noUserDetState && (
                 <div className="guest-address-display">
                     <h1 className="guest-address-name">{noUserDet.name}</h1>
-                    <h2 className="guest-address-heading">Address</h2>
-                    <p className="guest-address-details">
-                        {noUserDet.street}, {noUserDet.city}, {noUserDet.state}, {noUserDet.postal},{' '}
-                        {noUserDet.country}
+                    <h3 className="guest-address-heading">Address</h3>
+                    <div style={{display : "flex" ,gap : "20px"}}>
+                    <p className="guest-address-details" style = {{borderRight: '0.1px solid #333'}}>
+                    <div className="addressContent">{noUserDet.street}, {noUserDet.city}, {noUserDet.state}, {noUserDet.postal},{' '}
+                        {noUserDet.country}</div>
                     </p>
-                    <button className="edit-address-button" onClick={noUserEditAdress}>
-                        Edit Address
-                    </button>
+                    <div style={{paddingTop: '7px'}}>
+                    <StyledButton style={{ height: '30px', padding: '5px 5px 5px 5px', fontSize: '14px' ,color:"black", background:"none"  }} className="edit-address-button" onClick={noUserEditAdress}>
+                        Edit
+                    </StyledButton>
+                    </div>
+                    </div>
                 </div>
             )}
             <div className="payment-section">
                 {amount>0 && (
                     <div className="payment-form">
-                        <h2 className='totalAmount'>Total amount : {amount}</h2>
-                        <button className='Check_Cart' onClick={checkCart}> Click here to Check Cart </button>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
+                            <h3 className='totalAmount'>Amount : {`${amount} USD`}</h3>
+                        <div><StyledButton style={{ padding: '5px 10px', fontSize: '14px' }} className='Check_Cart' onClick={checkCart}> CHECK CART </StyledButton></div></div>
                         <h6> 
-                            <span style={{ color: "blue", fontSize: "12px", lineHeight: "1.5" }}>
+                            <span style={{ color: "red", fontSize: "12px", lineHeight: "1.5" }}>
                                 *Sample Test Card: 4242 4242 4242 4242, Expiry Date: Any Future Date, (CVC, POSTAL): Any Valid Value
                             </span>
                         </h6>
                         <h2 className="payment-title">Credit Card Payment</h2>
                         <CardElement className="card-element" />
                         { user.user && 
-                        <div>
-                        <button disabled= {addressState} className="pay-now-button" onClick={paymentHandler}>
+                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
+                        <StyledButton disabled= {addressState} className="pay-now-button" onClick={paymentHandler}>
                             Pay Now
-                        </button></div>}
+                        </StyledButton></div>}
                         {!user.user &&
-                        <button disabled= { noUserDetState} className="pay-now-button" onClick={paymentHandler}>
+                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
+                        <StyledButton disabled= { noUserDetState} className="pay-now-button" onClick={paymentHandler}>
                             Pay Now
-                        </button>}
+                        </StyledButton>
+                        </div>}
                     </div>
                 )}
             </div>

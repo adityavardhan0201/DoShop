@@ -1,0 +1,54 @@
+.address-container {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 18px; /* Increased font size */
+}
+
+.address-header {
+    text-align: center;
+    font-size: 28px; /* Increased font size */
+    margin-bottom: 20px;
+}
+
+.address-input-container {
+    margin-bottom: 15px;
+}
+
+.address-input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px; /* Increased font size */
+}
+
+.address-input-container input {
+    width: 95%;
+    padding: 10px; 
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;
+    background-color: #fff; /* White background for input */
+    color: #000; /* Black text */
+    font-size: 16px; /* Increased font size */
+}
+
+.submit-button {
+  background-color: black; 
+  color: white;
+  border: none;
+  padding: 10px 20px; 
+  font-size: 16px; 
+  font-weight: 700; /* Bold and thick text */
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 5px;
+}
+
+.submit-button:hover {
+    background-color: white; 
+    color: #333; 
+    border: 2px solid #333;
+}

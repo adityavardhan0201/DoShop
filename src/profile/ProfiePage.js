@@ -7,6 +7,7 @@ import FormAddress from './formAddress';
 import { useNavigate } from "react-router-dom";
 import './ProfilePage.css';
 import _ from "lodash";
+import {StyledButton} from '../styled-components/button'
 
 const ProfileDetails = () => {
     const navigate = useNavigate();
@@ -125,7 +126,9 @@ const ProfileDetails = () => {
     return (
         <div className="ProfileContainer">
             {user != null && <h1 className="ProfileHeader">{details && details.display}</h1>}
-            <button className="changeNameButton" onClick={TochangeName}>Click to Change Name</button>
+            <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',}}>
+            <StyledButton className="changeNameButton" onClick={TochangeName}> Change Name</StyledButton>
+            </div>
             {changename && user != null && (
                 <div className="nameChangeSection">
                     <input
@@ -133,16 +136,20 @@ const ProfileDetails = () => {
                         placeholder="Enter New Name"
                         onChange={changeNameinput}
                     />
-                    <button className="submitNameButton" onClick={buttonSubmit}>Submit New Name</button>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
+                    <StyledButton className="submitNameButton" onClick={buttonSubmit}>Submit New Name</StyledButton>
+                    </div>
                 </div>
             )}
             {details?.address && details.address.length > 0 && (
                 <div className="addressSection">
-                    <h2 className="addressHeader">Saved Addresses:</h2>
+                    <h3 className="addressHeader">Saved Addresses:</h3>
                     <ul className="addressList">
                         {details.address.map((addr, index) => (
-                            <div key={index} className="addressItemWrapper">
-                                <li className="addressItem">
+                            <div>
+                            {!_.isEqual(addr, addADD) && 
+                            <div key={index} style={{display:"flex"}}>
+                                <li className="addressItem" style = {{borderRight: '0.1px solid #333'}}>
                                     {!_.isEqual(addr, addADD) && (
                                         <div className="addressContent">
                                             {addr.street}, {addr.city}, {addr.state}, {addr.postal}, {addr.country}
@@ -151,12 +158,13 @@ const ProfileDetails = () => {
                                 </li>
                                 <div className="addressActions">
                                     {!_.isEqual(addr, addADD) && (
-                                        <div className="editDelete">
-                                            <button className="editButton" onClick={() => clickEdit(addr, index)}>Edit</button>
-                                            <button className="deleteButton" onClick={()=> deleteADD(addr, index)}>Delete</button>
+                                        <div className="editDelete" style={{gap:"10px",  padding: '5px 5px', display:"flex" , background:"none"}}>
+                                            <StyledButton style={{ height: '30px', padding: '5px 5px 5px 5px', fontSize: '14px' ,color:"black", background:"none"  }} className="editButton" onClick={() => clickEdit(addr, index)}>Edit</StyledButton>
+                                            <StyledButton style={{ height: '30px', padding: '5px 5px 5px 5px', fontSize: '14px' ,color:"black", background:"none" }} className="deleteButton" onClick={()=> deleteADD(addr, index)}>Delete</StyledButton>
                                         </div>
                                     )}
                                 </div>
+                                </div>}
                                 {_.isEqual(addr, addADD) && (
                                     <div className="editFormWrapper">
                                         <FormAddress editAdress={editAdress} addr={addr} />
@@ -167,8 +175,9 @@ const ProfileDetails = () => {
                     </ul>
                 </div>
             )}
-            {(!(details && details.address) || (details && details.address && details.address.length === 0)) && <h4 style={{ color: "red", textAlign: "center", fontSize: "14px" }}>No Address Present</h4>}
-            <button className="addAddressButton" onClick={addAdd}>Add New Address</button>
+            {(!(details && details.address) || (details && details.address && details.address.length === 0)) && <h3 className="addressHeader">Saved Addresses : None</h3>}
+            <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',}}>
+            <StyledButton className="addAddressButton" onClick={addAdd}>Add Address</StyledButton></div>
             {add && (
                 <div className="addAddressForm">
                     <label className="formLabel">
@@ -221,12 +230,14 @@ const ProfileDetails = () => {
                             required
                         />
                     </label>
-                    <button className="submitAddressButton" onClick={handleSubmit}>Submit Address</button>
+                    <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',}}>
+                    <StyledButton className="submitAddressButton" onClick={handleSubmit}>Submit Address</StyledButton>
+                    </div>
                 </div>
             )}
             <div style={{ display: 'flex', gap: '10px', justifyContent: 'space-between', paddingTop: '30px'}}>
-                <button className = "cartAndHomebut" onClick={() => { navigate('/Shopping') }}>Do Shopping</button>
-                <button className = "cartAndHomebut" onClick={() => { navigate('/Cart') }}>Checkout Cart</button>
+                <StyledButton className = "cartAndHomebut" onClick={() => { navigate('/Shopping') }}>Do Shopping</StyledButton>
+                <StyledButton className = "cartAndHomebut" onClick={() => { navigate('/Cart') }}>Checkout Cart</StyledButton>
             </div>
         </div>
     );

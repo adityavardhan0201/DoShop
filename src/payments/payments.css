@@ -8,9 +8,7 @@
     font-family: Arial, sans-serif;
 }
 
-.user-section, .guest-address-section, .guest-address-display, .payment-section {
-    margin-bottom: 30px;
-}
+
 
 .user-name, .guest-address-name {
     font-size: 1.8rem;
@@ -44,59 +42,8 @@
     color: #555;
 }
 
-.address-add-button {
+.address-details, .guest-address-details {
     width: 100%;
-    padding: 12px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    margin-top: 16px;
-}
-
-.address-add-button:hover {
-    background-color: #4cae4c;
-    transform: scale(1.05);
-}
-
-.change-address-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    margin-top: 16px;
-}
-
-.change-address-button:hover {
-    background-color: #2980b9;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.submit-address-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    margin-top: 16px;
-}
-
-.submit-address-button:hover {
-    background-color: #e68900;
-    transform: translateY(-2px);
-    opacity: 0.9;
 }
 
 .edit-address-button {
@@ -147,45 +94,11 @@
 }
 
 .pay-now-button {
-    width: 100%;
     padding: 12px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 16px;
 }
 
 
-.payment-form {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.Check_Cart {
-    width: auto;
-    padding: 8px 12px;
-    background-color: #8e44ad;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    margin-bottom: 15px;
-    display: inline-block;
-}
-
-.Check_Cart:hover {
-    background-color: #6a359c;
-    transform: translateX(5px);
-}
 h2 NoAdress
 {
     color: red;
@@ -222,7 +135,8 @@ h2 NoAdress
   .thank-you-link {
     font-size: 16px;
     font-weight: bold;
-    color: #007bff;
+    background-color: black;
+    color: white;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -230,7 +144,7 @@ h2 NoAdress
   }
   
   .thank-you-link:hover {
-    background-color: #007bff;
-    color: #fff;
+    background-color:  #f9f9f9;
+    color: black;
   }
   

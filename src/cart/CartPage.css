@@ -108,7 +108,8 @@
     flex: 1;
     max-width: 200px;
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 16px; 
+    font-weight: 700;
     text-align: center;
     border: none;
     border-radius: 5px;
@@ -117,21 +118,29 @@
 }
 
 .proceed-payment-btn {
-    background-color: #28a745;
+    background-color: black;
 }
 
 .guest-payment-btn {
-    background-color: #007bff;
+    background-color: black;
 }
 
 .login-btn {
-    background-color: #dc3545;
+    border: 2px solid #333;
+    color: black;
+    background-color: white;
 }
 
 .proceed-payment-btn:hover,
-.guest-payment-btn:hover,
-.login-btn:hover {
+.guest-payment-btn:hover
+{
     opacity: 0.9;
     color: white;
     transform: scale(1.01);
 }
+.login-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+    text-decoration: underline;
+}
+

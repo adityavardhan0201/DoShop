@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './formAddress.css';
 
 const FormAddress = (props) => {
     const [address, setAddress] = useState(props.addr);
@@ -18,9 +19,9 @@ const FormAddress = (props) => {
         props.editAdress(props.addr,add);
     }
     return (
-        <div className="address-box">
-            <h2 className="address-title">Address Details</h2>
-            <div className="address-field">
+        <div className="address-container">
+            <h2 className="address-header">Address Details</h2>
+            <div className="address-input-container">
                 <label>Street:</label>
                 <input
                     type="text"
@@ -29,7 +30,7 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="address-field">
+            <div className="address-input-container">
                 <label>City:</label>
                 <input
                     type="text"
@@ -38,7 +39,7 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="address-field">
+            <div className="address-input-container">
                 <label>State:</label>
                 <input
                     type="text"
@@ -47,7 +48,7 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="address-field">
+            <div className="address-input-container">
                 <label>Postal Code:</label>
                 <input
                     type="text"
@@ -56,7 +57,7 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="address-field">
+            <div className="address-input-container">
                 <label>Country:</label>
                 <input
                     type="text"
@@ -65,9 +66,9 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <button className = "disbutton" onClick={()=>SubmitEdit(address)}>
-                    Submit edited Adress
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
+                <button className="submit-button" onClick={()=>SubmitEdit(address)}>
+                    Submit Edited Address
                 </button>
             </div>
         </div>

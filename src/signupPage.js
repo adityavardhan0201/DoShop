@@ -155,6 +155,14 @@ const Signup = () =>
       {
         alert("email-already-in-use")
       }
+      if(error.code === "auth/invalid-email")
+      {
+        alert("invalid-email-address")
+      }
+      else
+      {
+        alert(error.code)
+      }
     }
   }
   const clickvis = () =>
@@ -203,7 +211,7 @@ const Signup = () =>
         {passVal && passRereq && !rePass &&<h6 className='requirements'>Password not Mathching</h6>}
         {passVal && passRereq && rePass &&<h6>Password Mathching</h6>}
         </div>
-        <button className="submit_button"disabled={!(passVal &&  rePass && name.length!==0 && mail.length!==0)} onClick={buttonclick}>submit</button>
+        <button className="submit_button"disabled={!(passVal &&  rePass && name.length!==0 && mail.length!==0)} onClick={buttonclick}>Create User</button>
         </div>
         }
         {Buttonen && 

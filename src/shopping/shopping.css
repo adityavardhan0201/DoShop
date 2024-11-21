@@ -74,11 +74,14 @@
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 16px; 
+    font-weight: 700;
 }
 
 .add-to-cart-button:hover {
-    background-color: #444; 
+    background-color: white; 
+    color: #333; 
+    border: 2px solid #333;
     cursor: pointer;
 }
 
