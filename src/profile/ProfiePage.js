@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import './ProfilePage.css';
 import _ from "lodash";
 import {StyledButton} from '../styled-components/button'
+import { Countries } from "../context/country";
 
 const ProfileDetails = () => {
     const navigate = useNavigate();
@@ -23,6 +24,36 @@ const ProfileDetails = () => {
     const [country, setCountry] = useState('');
     const [add, setAdd] = useState(false);
     const [addADD , setAddADD]  = useState({});
+    const [addSel,setAddSel] = useState(false);
+
+    const [dropDown,setDropdown] = useState(false);
+    const [coutArr,setcoutArr] = useState([]);
+    const submitCountry = (e)=>
+    {
+        const { Name, Code } = e;
+        const add = Name +" ("+Code+")";
+        setCountry(add);
+        setDropdown(false)
+        setAddSel(true)
+    }
+
+    const countryfilter = (e) =>
+    {
+        setAddSel(false)
+        let coun = e.target.value.toUpperCase();
+        setCountry(coun);
+        const arr = Countries.filter((map) => map.Name.toUpperCase().includes(coun))
+        setcoutArr(arr);
+        if(e.target.value !== "")
+        {
+            setDropdown(true)
+        }
+        else
+        {
+            setDropdown(false)
+        }
+    }
+
     const addAdd = () => {
         setAddADD({});
         setAdd(true);
@@ -30,9 +61,14 @@ const ProfileDetails = () => {
 
     const handleSubmit = async (e) => {
         setAddADD({});
-        if (!street || !city || !state || !postal || !country) 
+        if (!street || !city || !state || !postal || !country )
         {
             alert("All fields must be filled!");
+            return;
+        }
+        if( !addSel) 
+        {
+            alert("Select A country from Dropdown");
             return;
         }
         else if (user != null) {
@@ -226,10 +262,20 @@ const ProfileDetails = () => {
                             className="formInput"
                             type="text"
                             value={country}
-                            onChange={(e) => setCountry(e.target.value)}
+                            onChange={countryfilter}
                             required
                         />
                     </label>
+                    {
+                    dropDown &&
+                        <div className="dropdown-content">
+                            {coutArr.map((map, index) => (
+                            <div key={index} className="dropdown-item">
+                                <button onClick={() => submitCountry(map)}>
+                                    {map.Name}
+                                </button>
+                            </div>))}
+                        </div>}
                     <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',}}>
                     <StyledButton className="submitAddressButton" onClick={handleSubmit}>Submit Address</StyledButton>
                     </div>

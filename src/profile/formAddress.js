@@ -1,12 +1,39 @@
 import { useState } from "react";
 import './formAddress.css';
+import {Countries} from'../context/country';
 
 const FormAddress = (props) => {
     const [address, setAddress] = useState(props.addr);
-
+    const [dropDown,setDropdown] = useState(false);
+    const [coutArr,setcoutArr] = useState([]);
+    const [addSel,setAddSel] = useState(false);
+    const submitCountry = (e)=>
+    {
+        const { Name, Code } = e;
+        const add = Name +" ("+Code+")";
+        setAddress({ ...address, country: add});
+        setDropdown(false)
+        setAddSel(true)
+    }
     const handleChange = (e) => {
         const { name, value } = e.target;
         setAddress({ ...address, [name]: value });
+
+        if(name === "country")
+        {
+            setAddSel(false)
+            let coun = e.target.value.toUpperCase();
+            const arr = Countries.filter((map) => map.Name.toUpperCase().includes(coun))
+            setcoutArr(arr);
+        }
+        if(e.target.value !== "")
+        {
+            setDropdown(true)
+        }
+        else
+        {
+            setDropdown(false)
+        }
     };
     
     const { city, country, postal, state, street } = address;
@@ -14,6 +41,11 @@ const FormAddress = (props) => {
     {
         if (!add.street || !add.city || !add.state || !add.postal || !add.country) {
             alert("All fields must be filled!");
+            return;
+        }
+        if( !addSel) 
+        {
+            alert("Select A country from Dropdown");
             return;
         }
         props.editAdress(props.addr,add);
@@ -66,6 +98,15 @@ const FormAddress = (props) => {
                     onChange={handleChange}
                 />
             </div>
+            {dropDown &&
+                <div className="dropdown-content">
+                {coutArr.map((map, index) => (
+                <div key={index} className="dropdown-item">
+                    <button onClick={() => submitCountry(map)}>
+                        {map.Name}
+                    </button>
+                </div>))}
+                </div>}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , gap: '70px'}}>
                 <button className="submit-button" onClick={()=>SubmitEdit(address)}>
                     Submit Edited Address

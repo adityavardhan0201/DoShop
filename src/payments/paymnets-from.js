@@ -9,7 +9,8 @@ import { useContext } from 'react';
 import {db , auth} from '../firebase/firebase_1';
 import { setDoc , doc } from 'firebase/firestore';
 import './payments.css';
-import {StyledButton} from '../styled-components/button'
+import {StyledButton} from '../styled-components/button';
+import { Countries } from '../context/country';
 
 const Payments = () => {
     const noUserDetails = {
@@ -20,6 +21,21 @@ const Payments = () => {
         postal: "",
         country: "",
     };
+
+    const [dropDown,setDropdown] = useState(false);
+    const [coutArr,setcoutArr] = useState([]);
+    const [addSel,setAddSel] = useState(false);
+
+
+    const submitCountry = (e)=>
+    {
+        const { Name, Code } = e;
+        const add = Name +" ("+Code+")";
+        SetnoUserDet({ ...noUserDet, country: add})
+        setDropdown(false)
+        setAddSel(true)
+    }
+
 
     const navigate = useNavigate();
     const [paysuc,setpaysuc] = useState(true)
@@ -49,8 +65,24 @@ const Payments = () => {
         navigate('/profile');
     };
 
-    const handleChange = (event) => {
-        SetnoUserDet({ ...noUserDet, [event.target.name]: event.target.value });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        SetnoUserDet({ ...noUserDet, [e.target.name]: e.target.value });
+        if(name === "country")
+        {
+            setAddSel(false)
+            let coun = e.target.value.toUpperCase();
+            const arr = Countries.filter((map) => map.Name.toUpperCase().includes(coun))
+            setcoutArr(arr);
+        }
+        if(e.target.value !== "")
+        {
+            setDropdown(true)
+        }
+        else
+        {
+            setDropdown(false)
+        }
     };
 
     const paymentHandler = async (e) => {
@@ -124,6 +156,11 @@ const Payments = () => {
         if(noUserDet.city==='' || noUserDet.name==='' || noUserDet.state==='' || noUserDet.street==='' || noUserDet.postal==='' || noUserDet.country==='')
         {
             alert("fill All details")
+            return;
+        }
+        if( !addSel) 
+        {
+            alert("Select A country from Dropdown");
             return;
         }
         SetnoUserDetState(false);
@@ -260,6 +297,18 @@ const Payments = () => {
                             value={noUserDet.country}
                             onChange={handleChange}
                         />
+                        {
+                            dropDown &&
+                            <div className="dropdown-content">
+                            {coutArr.map((map, index) => (
+                                <div key={index} className="dropdown-item">
+                                <button onClick={() => submitCountry(map)}>
+                                    {map.Name}
+                                </button>
+                            </div>))}
+                            </div>
+                        }
+                    
                     </div>
                     <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',padding:"20px"}}>
                     <StyledButton className="submit-address-button" onClick={submitNoUseraddress}>
