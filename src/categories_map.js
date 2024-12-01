@@ -1,6 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import Category from './Categories';
 import mens from './images/seriously-man-black-near-gray-background.jpg';
+import shoes from './images/irene-kredenets-dwKiHoqqxk8-unsplash.jpg';
+import women from './images/freestocks-VFrcRtEQKL8-unsplash.jpg';
+import hats from './images/hat.webp';
 import './container.css';
 
 const Categories  = 
@@ -8,7 +11,7 @@ const Categories  =
   {
     name:"Hats",
     id:1,
-    imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+    imageUrl: hats,
   },
   {
     name:"Jacket",
@@ -18,12 +21,12 @@ const Categories  =
   {
     name:"Sneakers",
     id:3,
-    imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+    imageUrl: shoes,
   },
   {
     name:"Womens",
     id:4,
-    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+    imageUrl: women,
   },
   {
     name:"Mens",

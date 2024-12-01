@@ -160,6 +160,8 @@ const ProfileDetails = () => {
         }
     }
     return (
+        <div>
+        {user &&
         <div className="ProfileContainer">
             {user != null && <h1 className="ProfileHeader">{details && details.display}</h1>}
             <div style = {{ display: "flex" , justifyContent: 'center',alignItems: 'center',}}>
@@ -285,6 +287,11 @@ const ProfileDetails = () => {
                 <StyledButton className = "cartAndHomebut" onClick={() => { navigate('/Shopping') }}>Do Shopping</StyledButton>
                 <StyledButton className = "cartAndHomebut" onClick={() => { navigate('/Cart') }}>Checkout Cart</StyledButton>
             </div>
+        </div>}
+        {
+           !user && 
+           navigate('/Login')
+        }
         </div>
     );
 };

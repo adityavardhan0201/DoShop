@@ -39,9 +39,12 @@ a:hover {
 }
 
 .SignOutClassName h4:hover {
-    color: grey;
-    text-decoration: underline;
-}
+    background: linear-gradient(145deg, #3e3e3e, #2a2a2a); /* Reverse gradient on hover */
+    color: #ffda79; /* A vibrant accent color for text */
+    transform: scale(1.05); /* Slight enlargement */
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow on hover */
+  }
 
 .userNotNull {
     display: flex;
@@ -65,11 +68,24 @@ a:hover {
     font-size: 24px;
     color: black;
     cursor: pointer;
-}
+}    
+.HomeIcon svg:hover{
+    text-decoration: none;
+    background: linear-gradient(145deg, #3e3e3e, #2a2a2a); /* Reverse gradient on hover */
+    color: #ffda79; /* A vibrant accent color for text */
+    transform: scale(1.05); /* Slight enlargement */
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow on hover */
+  }
 
-.HomeIcon:hover {
-    color: grey;
-}
+.h5style:hover{  
+  text-decoration: none;
+  background: linear-gradient(145deg, #3e3e3e, #2a2a2a); /* Reverse gradient on hover */
+  color: #ffda79; /* A vibrant accent color for text */
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+              -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow on hover */
+}  
 
 .ShopClassName,
 .LoginClassName,
@@ -78,6 +94,15 @@ a:hover {
     font-weight: 1000;
     background-color: none;
 }
+
+a:hover {
+    text-decoration: none;
+    background: linear-gradient(145deg, #3e3e3e, #2a2a2a); /* Reverse gradient on hover */
+    color: #ffda79; /* A vibrant accent color for text */
+    transform: scale(1.05); /* Slight enlargement */
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow on hover */
+  }
 
 body {
     padding-top: 80px; 

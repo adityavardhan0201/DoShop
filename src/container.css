@@ -9,14 +9,15 @@
     padding-top: 0px;
 }
 .Inner_container {
-    width: 300px;
-    height: 300px;
+    width: 290px;
+    height: 280px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column; 
     text-align: center;
-    border: 1px solid black;
+    border: none;
+    border-radius: 8px;
     background-size:cover;
     background-position: center;
     
@@ -26,19 +27,56 @@
     cursor:pointer;
 }
 
-.commoncss
-{
-    border: 1px solid #000000; 
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
-    width :100px;
-    height: 80px;
-    gap:1px;
-    color: #000000;
-    background-color: #ffffff;
-    background: rgba(246, 243, 243, 0.7);
-    
+.commoncss {
+    padding: 25px 45px;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
 }
-.commoncss:hover
-{
-    background: rgba(246, 243, 243, 1);
+
+.commoncss:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.commoncss h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Specific layout for bottom items */
+.Womens_Container {
+    grid-column: 1 / 3;
+}
+
+.Mens_Container {
+    grid-column: 3 / 4;
+}
+
+@media (max-width: 1000px) {
+    .Outer_container {
+        grid-template-columns: repeat(2, 300px);
+    }
+    
+    .Womens_Container {
+        grid-column: 1 / 2;
+    }
+    
+    .Mens_Container {
+        grid-column: 2 / 3;
+    }
+}
+
+@media (max-width: 650px) {
+    .Outer_container {
+        grid-template-columns: 300px;
+    }
+    
+    .Womens_Container,
+    .Mens_Container {
+        grid-column: 1;
+    }
 }

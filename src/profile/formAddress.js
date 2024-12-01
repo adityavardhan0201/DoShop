@@ -6,7 +6,7 @@ const FormAddress = (props) => {
     const [address, setAddress] = useState(props.addr);
     const [dropDown,setDropdown] = useState(false);
     const [coutArr,setcoutArr] = useState([]);
-    const [addSel,setAddSel] = useState(false);
+    const [addSel,setAddSel] = useState(true);
     const submitCountry = (e)=>
     {
         const { Name, Code } = e;
@@ -21,7 +21,12 @@ const FormAddress = (props) => {
 
         if(name === "country")
         {
-            setAddSel(false)
+            if(e.target.value !== address.country)
+            {
+                console.log(e.target.value)
+                console.log(address.country)
+                setAddSel(false)
+            }
             let coun = e.target.value.toUpperCase();
             const arr = Countries.filter((map) => map.Name.toUpperCase().includes(coun))
             setcoutArr(arr);

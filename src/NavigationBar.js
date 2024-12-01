@@ -6,6 +6,7 @@ import { signOut } from 'firebase/auth';
 import { IoHome } from "react-icons/io5";
 import { CartContext } from './context/cart_context';  
 import {  useSelector } from "react-redux";
+import {StyledButton} from './styled-components/button'
 
 const Navigation = () => {
 
@@ -16,7 +17,7 @@ const Navigation = () => {
     const user = useSelector((state) => state.user)
     const [clicked,setClicked] = useState(false)
     const details = useSelector((state) => state.details)
-    
+    const [outBut,setoutBut] = useState(false);
     const click = (event) => {
             navigate('/cart');
     };
@@ -31,6 +32,10 @@ const Navigation = () => {
     },[count])
 
     const SignOut = async () => {
+        setoutBut(true);
+    };
+
+    const signok  = async () => {
         try {
             await signOut(auth);
             navigate('/');
@@ -39,14 +44,20 @@ const Navigation = () => {
         }
     };
 
+    const SignCancel = async () => {
+        setoutBut(false);
+    };
+
     return (
         <div className='outer'>
             <div className='NavigationBar'>
                 <div className='Home_icon'>
                     <Link to='/'>
                     <div className='HomeIcon' style={{ display: 'flex', alignItems: 'center', gap: '8px' , borderRadius: '4px' }}>    
+                    <div className='h5style'  style={{ display: 'flex', gap: '4px'}}>
                         <IoHome style={{ fontSize: '24px' }} />
-                        <h5 style={{ margin: 0 }}>Home</h5>
+                        <h5 style={{ margin: 0 ,paddingTop:"2px",paddingBottom:'0px' }}>Home</h5>
+                    </div>
                     </div>
 
                     </Link>
@@ -67,6 +78,15 @@ const Navigation = () => {
                         <div className='SignOutClassName'>
                             <h4 onClick={SignOut}>SignOut</h4>
                         </div>
+                        {outBut && (
+                            <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} >
+                                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', textAlign: 'center' }}>
+                                    <h5>Are you sure you want to sign out?</h5>
+                                    <StyledButton onClick={signok}>Yes</StyledButton>
+                                    <StyledButton onClick={SignCancel}>Cancel</StyledButton>
+                                </div>
+                            </div>  
+                            )}
                     </div>
                 )}
                 <div>

@@ -36,22 +36,35 @@
 }
 
 .submit-button {
-  background-color: black; 
-  color: white;
-  border: none;
-  padding: 10px 20px; 
-  font-size: 16px; 
-  font-weight: 700; /* Bold and thick text */
-  margin: 4px 2px; 
-  cursor: pointer; 
-  border-radius: 5px;
-}
-
-.submit-button:hover {
-    background-color: white; 
-    color: #333; 
-    border: 2px solid #333;
-}
+    background: linear-gradient(145deg, #2a2a2a, #3e3e3e);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), 
+                -2px -2px 6px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background: linear-gradient(145deg, #3e3e3e, #2a2a2a);
+    color: #ffda79;
+    transform: scale(1.05);
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.2);
+  }
+  
+  .submit-button:active {
+    transform: scale(0.98);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 
+                inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+  }
+  
 
 .dropdown-content {
     display: flex;

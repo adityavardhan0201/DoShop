@@ -57,42 +57,113 @@
 
 .buttonNow {
   padding: 12px 16px;
-  font-size: 1em;
-  background-color: #fff; /* white background for login button */
+  font-size: 16px;
+  background-color: #fff; /* white background */
   border: 1px solid #888; /* neutral border color */
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  flex: 1;
-  font-size: 16px; 
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
   font-weight: 700;
-  width: 185px;
+  flex: 1;
+  width: 185px; /* Added width to match your original */
 }
 
 .buttonNow:hover {
-  background-color: #f1f1f1; /* light gray on hover */
-  color: #333; /* dark text */
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0); /* Light gray gradient for hover */
+  color: #333; /* Dark text color */
+  transform: scale(1.05); /* Slight enlargement */
+  text-decoration: underline;
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+              -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow */
 }
 
 .buttonNow:active {
-  transform: scale(0.98);
+  transform: scale(0.98); /* Button press effect */
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 
+              inset -2px -2px 4px rgba(255, 255, 255, 0.1); /* Inset shadow for pressed look */
+}
+
+
+.buttonNow.google {
+  background-color: #000;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.buttonNow.google:hover {
+  background: linear-gradient(145deg, #333, #222); /* Darker gradient for hover */
+  color: #ffda79; /* Yellow text color on hover */
+  transform: scale(1.05);
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+              -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow */
 }
 
 .buttonNow:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
+.buttonNow.google:active {
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 
+              inset -2px -2px 4px rgba(255, 255, 255, 0.1); /* Inset shadow for pressed look */
+}
+
+
+.buttonNow {
+  padding: 12px 16px;
+  font-size: 16px;
+  background-color: #fff; /* white background */
+  border: 1px solid #888; /* neutral border color */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  font-weight: 700;
+  flex: 1;
+  width: 185px; /* Added width to match your original */
+}
+
+.buttonNow:hover {
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0); /* Light gray gradient for hover */
+  color: #333; /* Dark text color */
+  transform: scale(1.05); /* Slight enlargement */
+  text-decoration: underline;
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+              -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow */
+}
+
+.buttonNow:active {
+  transform: scale(0.98); /* Button press effect */
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 
+              inset -2px -2px 4px rgba(255, 255, 255, 0.1); /* Inset shadow for pressed look */
+}
+
+
 .buttonNow.google {
-  background-color: #000; /* black background for google button */
-  color: #fff; /* white text */
+  background-color: #000;
+  color: #fff;
   margin-left: 10px;
 }
 
 .buttonNow.google:hover {
-  background-color: #333; /* darker gray when hovered */
-  color: #fff; /* keep text white */
-  border: 2px solid #000;
+  background: linear-gradient(145deg, #333, #222); /* Darker gradient for hover */
+  color: #ffda79; /* Yellow text color on hover */
+  transform: scale(1.05);
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), 
+              -4px -4px 8px rgba(255, 255, 255, 0.2); /* Enhanced shadow */
+}
+
+.buttonNow:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.buttonNow.google:active {
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), 
+              inset -2px -2px 4px rgba(255, 255, 255, 0.1); /* Inset shadow for pressed look */
 }
 
 .create_account {
@@ -101,18 +172,22 @@
 }
 
 .create_account a {
-  text-decoration: underline;
-  color: #333; /* neutral color */
+  background: linear-gradient(145deg, #2a2a2a, #3e3e3e);
+  color: white;
   font-weight: bold;
-  transition: color 0.3s;
+  text-decoration: underline;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .create_account a:hover {
-  color: #555; /* darker shade on hover */
+  background: linear-gradient(145deg, #3e3e3e, #2a2a2a);
+  color: #ffda79;
+  transform: scale(1.05);
 }
 
-.showPss {
-  display: flex;
-  width: 100%;
-  align-items: center;
+.create_account a:active {
+  transform: scale(0.98);
+  background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
 }

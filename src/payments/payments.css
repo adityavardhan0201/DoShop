@@ -142,8 +142,3 @@ h2 NoAdress
     transition: background-color 0.3s, color 0.3s;
   }
   
-  .thank-you-link:hover {
-    background-color:  #f9f9f9;
-    color: black;
-  }
-  
