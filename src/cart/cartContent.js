@@ -20,6 +20,7 @@ const CartPage = () => {
       if (element.name === item) {
         setCount(count - element.count);
         console.log('hey hai');
+        console.log('fjeoij');
       }
     });
     array = array.filter((map) => map.name !== item);
